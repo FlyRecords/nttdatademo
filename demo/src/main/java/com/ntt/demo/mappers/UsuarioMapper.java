@@ -17,7 +17,7 @@ public class UsuarioMapper {
         usuarioDTO.setEmail(usuario.getEmail() != null ? usuario.getEmail() : null);
         usuarioDTO.setPassword(usuario.getPassword() != null ? usuario.getPassword() : null);
         usuarioDTO.setToken(usuario.getToken() != null ? usuario.getToken() : null);
-        usuarioDTO.setActive(usuario.isActive() != null ? usuario.isActive() : null);
+        usuarioDTO.setActive(usuario.getActive() != null ? usuario.getActive() : null);
         usuarioDTO.setCreated(usuario.getCreated() != null ? usuario.getCreated() : LocalDateTime.now());
         usuarioDTO.setModified(usuario.getModified() != null ? usuario.getModified() : null);
         usuarioDTO.setLastLogin(usuario.getLastLogin() != null ? usuario.getLastLogin() : null);
@@ -39,7 +39,7 @@ public class UsuarioMapper {
         usuario.setEmail(usuarioDTO.getEmail() != null ? usuarioDTO.getEmail() : null);
         usuario.setPassword(usuarioDTO.getPassword() != null ? usuarioDTO.getPassword() : null);
         usuario.setToken(usuarioDTO.getToken() != null ? usuarioDTO.getToken() : null);
-        usuario.setActive(usuario.isActive() != null ? usuario.isActive() : null);
+        usuario.setActive(usuario.getActive() != null ? usuario.getActive() : null);
         usuario.setCreated(usuarioDTO.getCreated() != null ? usuarioDTO.getCreated() : LocalDateTime.now());
         usuario.setModified(usuarioDTO.getModified() != null ? usuarioDTO.getModified() : null);
         usuario.setLastLogin(usuarioDTO.getLastLogin() != null ? usuarioDTO.getLastLogin() : null);

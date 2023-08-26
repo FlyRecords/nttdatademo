@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Phone")
+@Table(name = "phone")
 @NamedQueries({
         @NamedQuery(name = "Phone.findAll", query = "select p from Phone p"),
         @NamedQuery(name = "Phone.findById", query = "select p from Phone p where p.id = :id")
@@ -13,6 +13,7 @@ import java.io.Serializable;
 public class Phone{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "number")
@@ -25,7 +26,7 @@ public class Phone{
     private String countryCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Usuarios_idUsuarios")
+    @JoinColumn(name = "idusuario")
     private Usuario usuario;
 
 

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "usuario")
 @NamedQueries({
         @NamedQuery(name = "Usuario.findAll", query = "select u from Usuario u"),
         @NamedQuery(name = "Usuario.findById", query = "select u from Usuario u where u.id = :id")
@@ -18,7 +18,7 @@ import java.util.List;
 public class Usuario{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsuarios")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "name")
@@ -91,7 +91,7 @@ public class Usuario{
         this.token = token;
     }
 
-    public Boolean isActive() {
+    public Boolean getActive() {
         return isActive;
     }
 
@@ -143,5 +143,4 @@ public class Usuario{
         this.lastLogin = lastLogin;
         this.phones = phones;
     }
-
 }
