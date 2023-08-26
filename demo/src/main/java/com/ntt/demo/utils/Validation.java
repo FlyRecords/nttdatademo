@@ -1,5 +1,9 @@
 package com.ntt.demo.utils;
 
+import com.ntt.demo.dto.PhoneDTO;
+import com.ntt.demo.dto.UsuarioDTO;
+
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,5 +25,12 @@ public class Validation {
         Pattern pattern = Pattern.compile(PASS_REGEX);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+    public static boolean isEmptyUsuario (UsuarioDTO usuarioDTO){
+        return usuarioDTO.getName() == null && usuarioDTO.getEmail() == null && usuarioDTO.getPassword() == null
+                && (usuarioDTO.getPhones() == null || usuarioDTO.getPhones().isEmpty());
+    }
+    public static boolean isEmptyPhones (List<PhoneDTO> phoneDTO){
+        return phoneDTO == null || phoneDTO.isEmpty();
     }
 }

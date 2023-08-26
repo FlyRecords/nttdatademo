@@ -13,6 +13,7 @@ public class UsuarioMapper {
     public static UsuarioDTO toDTO(Usuario usuario) {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
         usuarioDTO.setId(usuario.getId());
+        usuarioDTO.setUuidusuario(usuario.getUuidusuario() != null ? usuario.getUuidusuario() : null);
         usuarioDTO.setName(usuario.getName() != null ? usuario.getName() : null);
         usuarioDTO.setEmail(usuario.getEmail() != null ? usuario.getEmail() : null);
         usuarioDTO.setPassword(usuario.getPassword() != null ? usuario.getPassword() : null);
@@ -36,6 +37,7 @@ public class UsuarioMapper {
     public static Usuario toModel(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario();
         usuario.setName(usuarioDTO.getName() != null ? usuarioDTO.getName() : null);
+        usuario.setUuidusuario(usuarioDTO.getUuidusuario() != null ? usuarioDTO.getUuidusuario() : null);
         usuario.setEmail(usuarioDTO.getEmail() != null ? usuarioDTO.getEmail() : null);
         usuario.setPassword(usuarioDTO.getPassword() != null ? usuarioDTO.getPassword() : null);
         usuario.setToken(usuarioDTO.getToken() != null ? usuarioDTO.getToken() : null);

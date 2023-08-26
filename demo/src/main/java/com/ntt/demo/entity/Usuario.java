@@ -15,12 +15,14 @@ import java.util.List;
         @NamedQuery(name = "Usuario.findById", query = "select u from Usuario u where u.id = :id")
 })
 
-public class Usuario{
+public class Usuario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "uuidusuario")
+    private String uuidusuario;
     @Column(name = "name")
     private String name;
 
@@ -131,16 +133,11 @@ public class Usuario{
         this.phones = phones;
     }
 
-    public Usuario(Integer id, String name, String email, String password, String token, Boolean isActive, LocalDateTime created, LocalDateTime modified, LocalDateTime lastLogin, List<Phone> phones) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.token = token;
-        this.isActive = isActive;
-        this.created = created;
-        this.modified = modified;
-        this.lastLogin = lastLogin;
-        this.phones = phones;
+    public String getUuidusuario() {
+        return uuidusuario;
+    }
+
+    public void setUuidusuario(String uuidusuario) {
+        this.uuidusuario = uuidusuario;
     }
 }

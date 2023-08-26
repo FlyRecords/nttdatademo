@@ -61,16 +61,19 @@ public class UsuarioDaoImpl implements UsuarioDao{
 
                 ZoneId zoneChile = ZoneId.of("America/Santiago");
                 ZonedDateTime fechaChile = ZonedDateTime.now(zoneChile);
-                String uuid = UUID.randomUUID().toString();
-                model.setToken(uuid);
+                String token = UUID.randomUUID().toString();
+                String uuidUsuario = UUID.randomUUID().toString();
+                model.setUuidusuario(uuidUsuario);
+                model.setToken(token);
                 model.setActive(true);
                 model.setCreated(fechaChile.toLocalDateTime());
+                model.setModified(fechaChile.toLocalDateTime());
                 model.setLastLogin(fechaChile.toLocalDateTime());
                 session.save(model);
-                for (Phone p : model.getPhones()){
+                /*for (Phone p : model.getPhones()){
                     p.setUsuarios(model);
                     session.save(p);
-                }
+                }*/
 
                 usuario = UsuarioMapper.toDTO(model);
                 session.getTransaction().commit();

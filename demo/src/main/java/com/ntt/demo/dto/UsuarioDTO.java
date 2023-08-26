@@ -2,12 +2,14 @@ package com.ntt.demo.dto;
 
 
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class UsuarioDTO {
+public class UsuarioDTO implements Serializable {
     private Integer id;
     private String name;
+    private String uuidusuario;
     private String email;
     private String password;
     private String token;
@@ -111,5 +113,13 @@ public class UsuarioDTO {
 
     public void setPhones(List<PhoneDTO> phones) {
         this.phones = phones;
+    }
+
+    public String getUuidusuario() {
+        return uuidusuario;
+    }
+
+    public void setUuidusuario(String uuidusuario) {
+        this.uuidusuario = uuidusuario;
     }
 }

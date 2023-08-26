@@ -3,7 +3,7 @@ package com.ntt.demo.dto;
 public class PhoneDTO {
     private Integer id;
     private String number;
-    private String cytycode;
+    private String citycode;
     private String countrycode;
 
     public PhoneDTO(String s, Object o, String s1) {
@@ -25,12 +25,12 @@ public class PhoneDTO {
         this.number = number;
     }
 
-    public String getCytycode() {
-        return cytycode;
+    public String getCitycode() {
+        return citycode;
     }
 
-    public void setCytycode(String cytycode) {
-        this.cytycode = cytycode;
+    public void setCitycode(String citycode) {
+        this.citycode = citycode;
     }
 
     public String getCountrycode() {
@@ -44,7 +44,7 @@ public class PhoneDTO {
     public PhoneDTO(Integer id, String number, String cytycode, String countrycode) {
         this.id = id;
         this.number = number;
-        this.cytycode = cytycode;
+        this.citycode = cytycode;
         this.countrycode = countrycode;
     }
 

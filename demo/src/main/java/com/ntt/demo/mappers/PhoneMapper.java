@@ -11,7 +11,7 @@ public class PhoneMapper {
         Phone phone = new Phone();
         phone.setId(phoneDTO.getId());
         phone.setNumber(phoneDTO.getNumber() != null ? phoneDTO.getNumber() : null);
-        phone.setCityCode(phoneDTO.getCytycode() != null ? phoneDTO.getCytycode() : null);
+        phone.setCityCode(phoneDTO.getCitycode() != null ? phoneDTO.getCitycode() : null);
         phone.setCountryCode(phoneDTO.getCountrycode() != null ? phoneDTO.getCountrycode() : null);
         return phone;
     }
@@ -19,7 +19,7 @@ public class PhoneMapper {
     public static PhoneDTO toDTO(Phone phone) {
         PhoneDTO phoneDTO = new PhoneDTO();
         phoneDTO.setNumber(phone.getNumber() != null ? phone.getNumber() : null);
-        phoneDTO.setCytycode(phone.getCityCode() != null ? phone.getCityCode() : null);
+        phoneDTO.setCitycode(phone.getCityCode() != null ? phone.getCityCode() : null);
         phoneDTO.setCountrycode(phone.getCountryCode() != null ? phone.getCountryCode() : null);
         return phoneDTO;
     }
