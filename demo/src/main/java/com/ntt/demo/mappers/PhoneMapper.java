@@ -13,7 +13,7 @@ public class PhoneMapper {
             phone.setId(phoneDTO.getId() != null ? phoneDTO.getId() : null);
             phone.setNumber(phoneDTO.getNumber() != null ? phoneDTO.getNumber() : null);
             phone.setCityCode(phoneDTO.getCitycode() != null ? phoneDTO.getCitycode() : null);
-            phone.setCountryCode(phoneDTO.getCountrycode() != null ? phoneDTO.getCountrycode() : null);
+            phone.setContryCode(phoneDTO.getContrycode() != null ? phoneDTO.getContrycode() : null);
         }
 
         return phone;
@@ -25,7 +25,7 @@ public class PhoneMapper {
             phoneDTO.setId(phone.getId() != null ? phone.getId() : null);
             phoneDTO.setNumber(phone.getNumber() != null ? phone.getNumber() : null);
             phoneDTO.setCitycode(phone.getCityCode() != null ? phone.getCityCode() : null);
-            phoneDTO.setCountrycode(phone.getCountryCode() != null ? phone.getCountryCode() : null);
+            phoneDTO.setContrycode(phone.getContryCode() != null ? phone.getContryCode() : null);
         }
 
         return phoneDTO;

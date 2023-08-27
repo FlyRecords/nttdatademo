@@ -4,7 +4,7 @@ public class PhoneDTO {
     private Integer id;
     private String number;
     private String citycode;
-    private String countrycode;
+    private String contrycode;
 
     public PhoneDTO(String s, Object o, String s1) {
     }
@@ -33,19 +33,19 @@ public class PhoneDTO {
         this.citycode = citycode;
     }
 
-    public String getCountrycode() {
-        return countrycode;
+    public String getContrycode() {
+        return contrycode;
     }
 
-    public void setCountrycode(String countrycode) {
-        this.countrycode = countrycode;
+    public void setContrycode(String contrycode) {
+        this.contrycode = contrycode;
     }
 
-    public PhoneDTO(Integer id, String number, String cytycode, String countrycode) {
+    public PhoneDTO(Integer id, String number, String cytycode, String contrycode) {
         this.id = id;
         this.number = number;
         this.citycode = cytycode;
-        this.countrycode = countrycode;
+        this.contrycode = contrycode;
     }
 
     public PhoneDTO() {

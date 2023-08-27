@@ -237,7 +237,7 @@ class UsuarioServiceTest {
         usuarioDTOModificar.setCreated(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         usuarioDTOModificar.setLastLogin(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         phoneDTO.setId(1);
-        phoneDTO.setCountrycode("123123");
+        phoneDTO.setContrycode("123123");
         phoneDTO.setNumber("99887766");
         phoneDTO.setCitycode("12312");
         phoneDTOList.add(phoneDTO);
@@ -287,7 +287,7 @@ class UsuarioServiceTest {
         usuarioDTOModificar.setCreated(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         usuarioDTOModificar.setLastLogin(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         phoneDTO.setId(1);
-        phoneDTO.setCountrycode("123123");
+        phoneDTO.setContrycode("123123");
         phoneDTO.setNumber("99887766");
         phoneDTO.setCitycode("12312");
         phoneDTOList.add(phoneDTO);
@@ -323,7 +323,7 @@ class UsuarioServiceTest {
         usuarioDTOModificar.setCreated(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         usuarioDTOModificar.setLastLogin(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         phoneDTO.setId(1);
-        phoneDTO.setCountrycode("123123");
+        phoneDTO.setContrycode("123123");
         phoneDTO.setNumber("99887766");
         phoneDTO.setCitycode("12312");
         phoneDTOList.add(phoneDTO);
@@ -410,7 +410,7 @@ class UsuarioServiceTest {
         usuarioDTOModificar.setCreated(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         usuarioDTOModificar.setLastLogin(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         phoneDTO.setId(1);
-        phoneDTO.setCountrycode("123123");
+        phoneDTO.setContrycode("123123");
         phoneDTO.setNumber("99887766");
         phoneDTO.setCitycode("12312");
         phoneDTOList.add(phoneDTO);
@@ -460,7 +460,7 @@ class UsuarioServiceTest {
         usuarioDTOModificar.setCreated(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         usuarioDTOModificar.setLastLogin(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         phoneDTO.setId(1);
-        phoneDTO.setCountrycode("123123");
+        phoneDTO.setContrycode("123123");
         phoneDTO.setNumber("99887766");
         phoneDTO.setCitycode("12312");
         phoneDTOList.add(phoneDTO);
@@ -496,7 +496,7 @@ class UsuarioServiceTest {
         usuarioDTOModificar.setCreated(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         usuarioDTOModificar.setLastLogin(LocalDateTime.parse("2023-08-26T21:49:52.3859277"));
         phoneDTO.setId(1);
-        phoneDTO.setCountrycode("123123");
+        phoneDTO.setContrycode("123123");
         phoneDTO.setNumber("99887766");
         phoneDTO.setCitycode("12312");
         phoneDTOList.add(phoneDTO);
@@ -574,7 +574,7 @@ class UsuarioServiceTest {
         phoneDTO.setId(1);
         phoneDTO.setNumber("99887766");
         phoneDTO.setCitycode("123123");
-        phoneDTO.setCountrycode("928212");
+        phoneDTO.setContrycode("928212");
         phoneDTOList.add(phoneDTO);
         usuarioDTOIngreso.setPhones(phoneDTOList);
         //Rellenando el retorno como si hubiera pasado por el DAO

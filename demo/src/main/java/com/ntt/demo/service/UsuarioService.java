@@ -186,7 +186,7 @@ public class UsuarioService {
             for (PhoneDTO dto : usuarioDTO.getPhones()){
                 if(dto.getNumber() == null) causas.add("En algún registro de tus listas de teléfono, viene vacío Number. ");
                 if(dto.getCitycode() == null) causas.add("En algún registro de tus listas de teléfono, viene vacío city code. ");
-                if(dto.getCountrycode() == null) causas.add("En algún registro de tus listas de teléfono, viene vacío Country Code. ");
+                if(dto.getContrycode() == null) causas.add("En algún registro de tus listas de teléfono, viene vacío Country Code. ");
             }
         }
     }

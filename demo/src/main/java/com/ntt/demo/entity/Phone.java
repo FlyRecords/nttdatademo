@@ -1,7 +1,6 @@
 package com.ntt.demo.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "phone")
@@ -22,8 +21,8 @@ public class Phone{
     @Column(name = "citycode")
     private String cityCode;
 
-    @Column(name = "countrycode")
-    private String countryCode;
+    @Column(name = "contrycode")
+    private String contryCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idusuario")
@@ -57,12 +56,12 @@ public class Phone{
         this.cityCode = cityCode;
     }
 
-    public String getCountryCode() {
-        return countryCode;
+    public String getContryCode() {
+        return contryCode;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setContryCode(String contryCode) {
+        this.contryCode = contryCode;
     }
 
     public Usuario getUsuarios() {
@@ -73,11 +72,11 @@ public class Phone{
         this.usuario = usuarios;
     }
 
-    public Phone(Integer id, String number, String cityCode, String countryCode, Usuario usuarios) {
+    public Phone(Integer id, String number, String cityCode, String contryCode, Usuario usuarios) {
         this.id = id;
         this.number = number;
         this.cityCode = cityCode;
-        this.countryCode = countryCode;
+        this.contryCode = contryCode;
         this.usuario = usuarios;
     }
 }
