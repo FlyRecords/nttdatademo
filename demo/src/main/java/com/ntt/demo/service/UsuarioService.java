@@ -86,6 +86,7 @@ public class UsuarioService {
         }catch (Exception e){
             e.printStackTrace();
             throw e;
+
         }
     }
     @PutMapping("/modificarbyidanduuid")
@@ -183,9 +184,9 @@ public class UsuarioService {
             causas.add("La lista de teléfonos viene vacía o nula. ");
         }else{
             for (PhoneDTO dto : usuarioDTO.getPhones()){
-                if(dto.getNumber() == null) causas.add("En algun registro de tus listas de teléfono, viene vacío Number. ");
-                if(dto.getCitycode() == null) causas.add("En algun registro de tus listas de teléfono, viene vacío city code. ");
-                if(dto.getCountrycode() == null) causas.add("En algun registro de tus listas de teléfono, viene vacío Country Code. ");
+                if(dto.getNumber() == null) causas.add("En algún registro de tus listas de teléfono, viene vacío Number. ");
+                if(dto.getCitycode() == null) causas.add("En algún registro de tus listas de teléfono, viene vacío city code. ");
+                if(dto.getCountrycode() == null) causas.add("En algún registro de tus listas de teléfono, viene vacío Country Code. ");
             }
         }
     }
@@ -215,6 +216,8 @@ public class UsuarioService {
             }
         }
     }
+
+
 
 
 }
