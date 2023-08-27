@@ -9,18 +9,25 @@ import java.util.List;
 public class PhoneMapper {
     public static Phone toModel(PhoneDTO phoneDTO) {
         Phone phone = new Phone();
-        phone.setId(phoneDTO.getId());
-        phone.setNumber(phoneDTO.getNumber() != null ? phoneDTO.getNumber() : null);
-        phone.setCityCode(phoneDTO.getCitycode() != null ? phoneDTO.getCitycode() : null);
-        phone.setCountryCode(phoneDTO.getCountrycode() != null ? phoneDTO.getCountrycode() : null);
+        if(phoneDTO != null){
+            phone.setId(phoneDTO.getId() != null ? phoneDTO.getId() : null);
+            phone.setNumber(phoneDTO.getNumber() != null ? phoneDTO.getNumber() : null);
+            phone.setCityCode(phoneDTO.getCitycode() != null ? phoneDTO.getCitycode() : null);
+            phone.setCountryCode(phoneDTO.getCountrycode() != null ? phoneDTO.getCountrycode() : null);
+        }
+
         return phone;
     }
 
     public static PhoneDTO toDTO(Phone phone) {
         PhoneDTO phoneDTO = new PhoneDTO();
-        phoneDTO.setNumber(phone.getNumber() != null ? phone.getNumber() : null);
-        phoneDTO.setCitycode(phone.getCityCode() != null ? phone.getCityCode() : null);
-        phoneDTO.setCountrycode(phone.getCountryCode() != null ? phone.getCountryCode() : null);
+        if(phone != null){
+            phoneDTO.setId(phone.getId() != null ? phone.getId() : null);
+            phoneDTO.setNumber(phone.getNumber() != null ? phone.getNumber() : null);
+            phoneDTO.setCitycode(phone.getCityCode() != null ? phone.getCityCode() : null);
+            phoneDTO.setCountrycode(phone.getCountryCode() != null ? phone.getCountryCode() : null);
+        }
+
         return phoneDTO;
     }
 

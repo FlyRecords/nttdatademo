@@ -8,8 +8,8 @@ import java.util.List;
 
 public class UsuarioDTO implements Serializable {
     private Integer id;
-    private String name;
     private String uuidusuario;
+    private String name;
     private String email;
     private String password;
     private String token;

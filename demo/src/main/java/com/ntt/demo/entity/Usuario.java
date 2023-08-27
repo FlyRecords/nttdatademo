@@ -1,7 +1,5 @@
 package com.ntt.demo.entity;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +10,10 @@ import java.util.List;
 @Table(name = "usuario")
 @NamedQueries({
         @NamedQuery(name = "Usuario.findAll", query = "select u from Usuario u"),
-        @NamedQuery(name = "Usuario.findById", query = "select u from Usuario u where u.id = :id")
+        @NamedQuery(name = "Usuario.findById", query = "select u from Usuario u where u.id = :id"),
+        @NamedQuery(name = "Usuario.findByEmailAndPassword", query = "select u from Usuario u where u.email = :email and u.password = :password"),
+        @NamedQuery(name = "Usuario.findByIdAndUuidusuario", query = "select u from Usuario u where u.id = :id and u.uuidusuario = :uuidusuario"),
+        @NamedQuery(name = "Usuario.findByIdAndUuidusuarioAndToken", query = "select u from Usuario u where u.id = :id and u.uuidusuario = :uuidusuario and u.token = :token")
 })
 
 public class Usuario implements Serializable{
