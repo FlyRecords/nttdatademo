@@ -95,13 +95,11 @@ public class UsuarioDaoImpl implements UsuarioDao{
             Query query = session.createNamedQuery("Usuario.findByEmailAndPassword").setParameter("email", usuario.getEmail()).setParameter("password",usuario.getPassword());
             Usuario usuarioQuery = !query.getResultList().isEmpty() ? (Usuario) query.getResultList().get(0) : null;
             if(usuarioQuery != null){
-                usuarioDTO = UsuarioMapper.toDTO(usuarioQuery);
-
                 String token = UUID.randomUUID().toString(); // se actualizará el token en cada login. IMPORTANTE!
                 usuarioQuery.setToken(token);
                 usuarioQuery.setLastLogin(Utilidades.obtenerFechaHoraActual());
                 session.update(usuarioQuery);
-
+                usuarioDTO = UsuarioMapper.toDTO(usuarioQuery);
             }
             session.getTransaction().commit();
         }catch (Exception e){
@@ -188,6 +186,23 @@ public class UsuarioDaoImpl implements UsuarioDao{
         UsuarioDTO usuarioDTO = new UsuarioDTO();
         try {
             Query query =session.createNamedQuery("Usuario.findByIdAndUuidusuarioAndToken").setParameter("id", id).setParameter("uuidusuario",uuid).setParameter("token",token);
+            Usuario usuario = !query.getResultList().isEmpty() ? (Usuario) query.getResultList().get(0) : null;
+            usuarioDTO = UsuarioMapper.toDTO(usuario);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw e;
+        }finally {
+            session.close();
+        }
+        return usuarioDTO;
+    }
+
+    @Override
+    public UsuarioDTO obtenerUsuariosByEmailAndPassAndToken(String email, String pass, String token) throws Exception{
+        Session session = sessionFactory.openSession();
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        try {
+            Query query =session.createNamedQuery("Usuario.findByEmailAndPasswordAndToken").setParameter("email", email).setParameter("password",pass).setParameter("token",token);
             Usuario usuario = !query.getResultList().isEmpty() ? (Usuario) query.getResultList().get(0) : null;
             usuarioDTO = UsuarioMapper.toDTO(usuario);
         }catch (Exception e){

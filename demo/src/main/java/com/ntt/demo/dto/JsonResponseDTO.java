@@ -3,10 +3,12 @@ package com.ntt.demo.dto;
 import java.util.List;
 
 public class JsonResponseDTO {
+    String statusToken;
     Object obj;
     String estado;
     String mensaje;
     String mensajeSecundario;
+
     List<String> listaValidaciones;
 
     public List<String> getListaValidaciones() {
@@ -47,5 +49,13 @@ public class JsonResponseDTO {
 
     public void setMensajeSecundario(String mensajeSecundario) {
         this.mensajeSecundario = mensajeSecundario;
+    }
+
+    public String getStatusToken() {
+        return statusToken;
+    }
+
+    public void setStatusToken(String statusToken) {
+        this.statusToken = statusToken;
     }
 }

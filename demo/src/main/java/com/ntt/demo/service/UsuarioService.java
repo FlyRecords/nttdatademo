@@ -4,6 +4,9 @@ import com.ntt.demo.dao.UsuarioDao;
 import com.ntt.demo.dto.JsonResponseDTO;
 import com.ntt.demo.dto.PhoneDTO;
 import com.ntt.demo.dto.UsuarioDTO;
+import com.ntt.demo.utils.MensajeEnum;
+import com.ntt.demo.utils.StatusServiceEnum;
+import com.ntt.demo.utils.TokenStatusEnum;
 import com.ntt.demo.utils.Utilidades;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,9 +30,9 @@ public class UsuarioService {
             usuarioDTOList = usuarioDao.obtenerUsuarios();
             if(usuarioDTOList !=null && !usuarioDTOList.isEmpty()){
                 responseUsuario.setObj(usuarioDTOList);
-                responseUsuario.setEstado("EXITO");
+                responseUsuario.setEstado(StatusServiceEnum.EXITO_SERVICE.getMensajeStatus());
             }else{
-                responseUsuario.setMensaje("NINGUN USUARIO REGISTRADO");
+                responseUsuario.setMensaje(MensajeEnum.SN_USUARIOS_REGISTRADOS.getMensaje());
             }
             return ResponseEntity.ok(responseUsuario); // 200 OK
         }catch (Exception e){
@@ -48,10 +51,12 @@ public class UsuarioService {
             if(causas.isEmpty()){
                 usuarioDTO = usuarioDao.ingresarUsuario(dto);
                 responseUsuario.setObj(usuarioDTO);
-                responseUsuario.setEstado("EXITO");
+                responseUsuario.setEstado(StatusServiceEnum.EXITO_SERVICE.getMensajeStatus());
+                responseUsuario.setStatusToken(TokenStatusEnum.TOKEN_CREADO.getMensajeToken());
                 return ResponseEntity.status(HttpStatus.CREATED).body(responseUsuario); // 201 Created
             }else{
-                responseUsuario.setMensaje("Entrega de validaciones");
+                responseUsuario.setEstado(StatusServiceEnum.DATOS_INCORRECTOS.getMensajeStatus());
+                responseUsuario.setMensaje(MensajeEnum.ENTREGA_VALIDACIONES.getMensaje());
                 responseUsuario.setListaValidaciones(causas);
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseUsuario); //400 ya que no cumple las validaciones
             }
@@ -70,10 +75,12 @@ public class UsuarioService {
             usuarioDTO = usuarioDao.loginUsuario(dto);
             if(usuarioDTO !=null && usuarioDTO.getEmail() != null){
                 responseUsuario.setObj(usuarioDTO);
-                responseUsuario.setEstado("EXITO");
+                responseUsuario.setStatusToken(TokenStatusEnum.TOKEN_ACTUALIZADO.getMensajeToken());
+                responseUsuario.setEstado(StatusServiceEnum.EXITO_SERVICE.getMensajeStatus());
                 return ResponseEntity.ok(responseUsuario); // 200 OK
             }else{
-                responseUsuario.setMensaje("EMAIL Y CONTRASEÑA NO COINCIDEN");
+                responseUsuario.setEstado(StatusServiceEnum.DATOS_INCORRECTOS.getMensajeStatus());
+                responseUsuario.setMensaje(MensajeEnum.CREDENCIALES_INCORRECTAS.getMensaje());
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(responseUsuario); // 401 Unauthorized
             }
         }catch (Exception e){
@@ -81,7 +88,7 @@ public class UsuarioService {
             throw e;
         }
     }
-    @PostMapping("/modificarbyidanduuid")
+    @PutMapping("/modificarbyidanduuid")
     public ResponseEntity<JsonResponseDTO> modificarUsuarioByIdAndUuid(@RequestBody UsuarioDTO dto) throws Exception{
         JsonResponseDTO responseUsuario = new JsonResponseDTO();
         UsuarioDTO usuarioDTO = new UsuarioDTO();
@@ -91,21 +98,22 @@ public class UsuarioService {
             UsuarioDTO usuarioTokenValido = usuarioDao.obtenerUsuariosByIdAndUuidAndToken(dto.getId(), dto.getUuidusuario(), dto.getToken());
             if(usuarioEncontrado == null || usuarioEncontrado.getId() == null){
                 //usuario no encontrado
-                responseUsuario.setMensaje("USUARIO NO ENCONTRADO");
+                responseUsuario.setMensaje(MensajeEnum.US_INEXISTENTE.getMensaje());
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseUsuario); //404
             }else if(usuarioTokenValido == null || usuarioTokenValido.getId() == null){
                 //usuario token invalido
-                responseUsuario.setMensaje("TOKEN INVALIDO");
+                responseUsuario.setMensaje(TokenStatusEnum.TOKEN_INVALIDO.getMensajeToken());
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(responseUsuario); // 403
             }
             causas = this.valid(dto);
             if(causas.isEmpty()){
                 usuarioDTO = usuarioDao.modificarUsuario(dto);
                 responseUsuario.setObj(usuarioDTO);
-                responseUsuario.setEstado("EXITO");
+                responseUsuario.setStatusToken(TokenStatusEnum.TOKEN_ACTUALIZADO.getMensajeToken());
+                responseUsuario.setEstado(StatusServiceEnum.EXITO_SERVICE.getMensajeStatus());
                 return ResponseEntity.status(HttpStatus.OK).body(responseUsuario); // 200 EXITO
             }else{
-                responseUsuario.setMensaje("Entrega de validaciones");
+                responseUsuario.setMensaje(MensajeEnum.ENTREGA_VALIDACIONES.getMensaje());
                 responseUsuario.setListaValidaciones(causas);
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseUsuario); //400 ya que no cumple las validaciones
             }
@@ -117,31 +125,33 @@ public class UsuarioService {
 
 
     }
-    @PostMapping("/modificarbymailandpass")
+    @PutMapping("/modificarbymailandpass")
     public ResponseEntity<JsonResponseDTO> modificarUsuarioByMailAndPass(@RequestBody UsuarioDTO dto) throws Exception {
         JsonResponseDTO responseUsuario = new JsonResponseDTO();
         UsuarioDTO usuarioDTO = new UsuarioDTO();
         List<String> causas = new ArrayList<>();
         try {
             UsuarioDTO usuarioEncontrado = usuarioDao.obtenerUsuariosByMailAndPass(dto.getEmail(), dto.getPassword());
-            UsuarioDTO usuarioTokenValido = usuarioDao.obtenerUsuariosByIdAndUuidAndToken(dto.getId(), dto.getUuidusuario(), dto.getToken());
+            UsuarioDTO usuarioTokenValido = usuarioDao.obtenerUsuariosByEmailAndPassAndToken(dto.getEmail(), dto.getPassword(), dto.getToken());
             if (usuarioEncontrado == null || usuarioEncontrado.getId() == null) {
                 //usuario no encontrado
-                responseUsuario.setMensaje("USUARIO NO ENCONTRADO");
+                responseUsuario.setMensaje(MensajeEnum.US_INEXISTENTE.getMensaje());
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseUsuario); //404
             } else if (usuarioTokenValido == null || usuarioTokenValido.getId() == null) {
                 //usuario token invalido
-                responseUsuario.setMensaje("TOKEN INVALIDO");
+                responseUsuario.setMensaje(TokenStatusEnum.TOKEN_INVALIDO.getMensajeToken());
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(responseUsuario); // 403
             }
             causas = this.valid(dto);
             if (causas.isEmpty()) {
                 usuarioDTO = usuarioDao.modificarUsuario(dto);
                 responseUsuario.setObj(usuarioDTO);
-                responseUsuario.setEstado("EXITO");
+                responseUsuario.setStatusToken(TokenStatusEnum.TOKEN_ACTUALIZADO.getMensajeToken());
+                responseUsuario.setEstado(StatusServiceEnum.EXITO_SERVICE.getMensajeStatus());
                 return ResponseEntity.status(HttpStatus.OK).body(responseUsuario); // 200 EXITO
             } else {
-                responseUsuario.setMensaje("Entrega de validaciones");
+                responseUsuario.setEstado(StatusServiceEnum.DATOS_INCORRECTOS.getMensajeStatus());
+                responseUsuario.setMensaje(MensajeEnum.ENTREGA_VALIDACIONES.getMensaje());
                 responseUsuario.setListaValidaciones(causas);
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseUsuario); //400 ya que no cumple las validaciones
             }

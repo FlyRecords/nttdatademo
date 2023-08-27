@@ -18,4 +18,6 @@ public interface UsuarioDao {
     public UsuarioDTO obtenerUsuariosByMailAndPass(String mail, String pass) throws Exception;
 
     public UsuarioDTO obtenerUsuariosByIdAndUuidAndToken(Integer id, String uuid, String token) throws Exception;
+
+    public UsuarioDTO obtenerUsuariosByEmailAndPassAndToken(String email, String pass, String token) throws Exception;
 }

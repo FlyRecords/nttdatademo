@@ -13,7 +13,8 @@ import java.util.List;
         @NamedQuery(name = "Usuario.findById", query = "select u from Usuario u where u.id = :id"),
         @NamedQuery(name = "Usuario.findByEmailAndPassword", query = "select u from Usuario u where u.email = :email and u.password = :password"),
         @NamedQuery(name = "Usuario.findByIdAndUuidusuario", query = "select u from Usuario u where u.id = :id and u.uuidusuario = :uuidusuario"),
-        @NamedQuery(name = "Usuario.findByIdAndUuidusuarioAndToken", query = "select u from Usuario u where u.id = :id and u.uuidusuario = :uuidusuario and u.token = :token")
+        @NamedQuery(name = "Usuario.findByIdAndUuidusuarioAndToken", query = "select u from Usuario u where u.id = :id and u.uuidusuario = :uuidusuario and u.token = :token"),
+        @NamedQuery(name = "Usuario.findByEmailAndPasswordAndToken", query = "select u from Usuario u where u.email = :email and u.password = :password and u.token = :token")
 })
 
 public class Usuario implements Serializable{
